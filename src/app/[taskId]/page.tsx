@@ -26,6 +26,16 @@ export default async function TaskPage({
     return <div>Task not found</div>;
   }
 
+  const totalSteps = result.agent_logs.length;
+  const totalInputTokens = result.agent_logs.reduce(
+    (acc, log) => acc + log.usage.inputTokensStep,
+    0,
+  );
+  const totalOutputTokens = result.agent_logs.reduce(
+    (acc, log) => acc + log.usage.outputTokensStep,
+    0,
+  );
+
   return (
     <main className="flex flex-1 flex-col p-4 md:p-6">
       <div className="flex items-center gap-4">
@@ -53,6 +63,47 @@ export default async function TaskPage({
             </Popover>
           )}
         </div>
+      </div>
+      <Separator className="my-4" />
+      <div className="grid gap-4 md:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="font-medium text-sm">Duration</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="font-bold text-2xl">
+              {`${(result.execution_time_ms / 1000).toFixed(2)}s`}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="font-medium text-sm">Steps</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="font-bold text-2xl">{totalSteps}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="font-medium text-sm">Input Tokens</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="font-bold text-2xl">
+              {totalInputTokens.toLocaleString()}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="font-medium text-sm">Output Tokens</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="font-bold text-2xl">
+              {totalOutputTokens.toLocaleString()}
+            </div>
+          </CardContent>
+        </Card>
       </div>
       <Separator className="my-4" />
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
