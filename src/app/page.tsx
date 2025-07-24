@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { getResults } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
@@ -27,11 +26,13 @@ export default async function Home() {
       : "0";
 
   return (
-    <main className="flex flex-1 flex-col p-4 md:p-6">
-      <div className="flex items-center">
-        <h1 className="font-semibold text-lg md:text-2xl">Dashboard</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="mb-8 text-center">
+        <h1 className="font-bold text-4xl">Meka AI WebArena Benchmark</h1>
+        <p className="text-lg text-muted-foreground">
+          A summary of the test results for the WebArena benchmark.
+        </p>
       </div>
-      <Separator className="my-4" />
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader>

@@ -23,7 +23,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SidebarProvider>
           <GroupedResultsSidebar groupedResults={groupedResults} />
-          <main>
+          <main className="h-full w-full">
             <SidebarTrigger />
             {children}
           </main>
