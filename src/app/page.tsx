@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getResults } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const results = await getResults();
 

@@ -10,6 +10,8 @@ import { getResults, getWebArenaTask } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Info } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function TaskPage({
   params,
 }: {
