@@ -8,7 +8,7 @@ function isToolCall(done: Done): done is Extract<Done, { type: "tool_call" }> {
 }
 
 function isText(done: Done): done is Extract<Done, { type: "text" }> {
-  return done.type === "text";
+  return done.type === "text" && done.text !== "";
 }
 
 export function AgentLog({ step }: { step: AgentLogEntry }) {
@@ -16,7 +16,6 @@ export function AgentLog({ step }: { step: AgentLogEntry }) {
 
   const computerActions = modelOutput.done.filter(isToolCall);
   const textOutputs = modelOutput.done.filter(isText);
-
   return (
     <Card>
       <CardHeader>
@@ -25,23 +24,23 @@ export function AgentLog({ step }: { step: AgentLogEntry }) {
       <CardContent className="space-y-4">
         {plan?.currentStepReasoning && (
           <div>
-            <h3 className="font-semibold">Plan Reasoning</h3>
+            <h3 className="font-semibold">Plan</h3>
             <p>{plan.currentStepReasoning}</p>
-          </div>
-        )}
-        {computerActions.length > 0 && (
-          <div>
-            <h3 className="font-semibold">Computer Actions</h3>
-            {computerActions.map((action) => (
-              <p key={action.toolCallId}>{action.reasoning}</p>
-            ))}
           </div>
         )}
         {textOutputs.length > 0 && (
           <div>
-            <h3 className="font-semibold">Text Outputs</h3>
+            <h3 className="font-semibold">Thoughts</h3>
             {textOutputs.map((output) => (
               <p key={output.text}>{output.text}</p>
+            ))}
+          </div>
+        )}
+        {computerActions.length > 0 && (
+          <div>
+            <h3 className="font-semibold">Tool Outputs</h3>
+            {computerActions.map((action) => (
+              <p key={action.toolCallId}>{action.reasoning}</p>
             ))}
           </div>
         )}
