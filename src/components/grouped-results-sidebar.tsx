@@ -16,7 +16,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import type { Result } from "@/lib/types";
-import { ChevronRight } from "lucide-react";
+import { Check, ChevronRight, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -32,7 +32,7 @@ export function GroupedResultsSidebar({
       <SidebarContent>
         <SidebarMenu>
           <SidebarGroup>
-            <SidebarGroupLabel>Tasks</SidebarGroupLabel>
+            <SidebarGroupLabel>WebArena Eval Tasks</SidebarGroupLabel>
             {Object.entries(groupedResults).map(([site, results]) => (
               <Collapsible key={site} defaultOpen={false}>
                 <SidebarMenuItem>
@@ -54,7 +54,14 @@ export function GroupedResultsSidebar({
                             isActive={pathname === `/${result.task_id}`}
                           >
                             <Link href={`/${result.task_id}`}>
-                              Task {result.task_id}
+                              <span className="flex-grow">
+                                Task {result.task_id}
+                              </span>
+                              {result.result === "PASS" ? (
+                                <Check className="h-4 w-4 text-green-500" />
+                              ) : (
+                                <X className="h-4 w-4 text-red-500" />
+                              )}
                             </Link>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>

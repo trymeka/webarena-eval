@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { GroupedResultsSidebar } from "@/components/grouped-results-sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getGroupedResults } from "@/lib/data";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +23,10 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SidebarProvider>
           <GroupedResultsSidebar groupedResults={groupedResults} />
-          {children}
+          <main>
+            <SidebarTrigger />
+            {children}
+          </main>
         </SidebarProvider>
       </body>
     </html>

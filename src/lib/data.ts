@@ -2,6 +2,7 @@ import { Buffer } from "node:buffer";
 import { createReadStream } from "node:fs";
 import JSONbig from "json-bigint";
 import type { Result } from "./types";
+import webarenaData from "./webarena.json";
 
 let results: Result[];
 
@@ -37,4 +38,9 @@ export async function getGroupedResults() {
     {} as Record<string, Result[]>,
   );
   return grouped;
+}
+
+export async function getWebArenaTask(taskId: string) {
+  const task = webarenaData.find((t) => t.task_id.toString() === taskId);
+  return task;
 }
