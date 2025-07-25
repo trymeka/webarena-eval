@@ -167,7 +167,7 @@ To ensure the accuracy of our results, we made several modifications to the WebA
 - **Data Correction:** We fixed incorrect numbers and values in certain tests to align with the data on the test websites. (e.g. task id 66, 293-297).
 - **Exclusions:** We excluded all map-related tests. The map tiling URL in the provided Docker container was broken, making these tasks impossible to complete. Further, we excluded tasks where the expected_answer were incorrect or the tasks were impossible to complete because of the environment. You can find the list of exclusions here[TODO data file].
 
-These resulted in a total of 684 total task. The full list of task along with all of its corrections can be found in [webarena.json](./src/lib/webarena.json)
+These resulted in a total of 684 total tasks. The full list of task along with all of its corrections can be found in [webarena.json](./src/lib/webarena.json)
 
 We ran the evaluations in a [Scrapybara browser](https://docs.scrapybara.com/browser) instead of Playwright browsers. The models used relies on the visual action space for navigation (e.g., using the search bar or backward/forward buttons). The model interacts with the browser through computer vision and simulated mouse/keyboard actions provided by Scrapybara. This setup provides a more realistic test of the agent's ability to operate in a standard browser environment.
 
