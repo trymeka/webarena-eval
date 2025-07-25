@@ -165,7 +165,7 @@ To ensure the accuracy of our results, we made several modifications to the WebA
 - **Typos:** We corrected a typo in the `gitlab_get_project_member_role` function.
 - **URL Mismatches:** We updated the start URL for the `shopping_admin` tasks in [webarena.json](./src/lib/webarena.json) to start from `http://3.149.163.222:7780/admin` instead of `http://3.149.163.222:7780`.
 - **Data Correction:** We fixed incorrect numbers and values in certain tests to align with the data on the test websites. (e.g. task id 66, 293-297).
-- **Exclusions:** We excluded all map-related tests. The map tiling URL in the provided Docker container was broken, making these tasks impossible to complete.
+- **Exclusions:** We excluded all map-related tests. The map tiling URL in the provided Docker container was broken, making these tasks impossible to complete. Further, we excluded tasks where the expected_answer were incorrect or the tasks were impossible to complete because of the environment. You can find the list of exclusions here[TODO data file].
 
 These resulted in a total of 684 total task. The full list of task along with all of its corrections can be found in [webarena.json](./src/lib/webarena.json)
 
@@ -179,6 +179,7 @@ We use a hybrid evaluation system. A task is a "PASS" only if it passes all chec
 
 - **program_html**: This follows a port of what [webArena has](https://github.com/web-arena-x/webarena/blob/main/evaluation_harness/evaluators.py#L356) ported from python to typescript.
 - **LLM Check**: For others, we use an LLM to judge the result. It gets the task, the agent's answer, and the expected outcome. It returns a "PASS" or "FAIL" along with its reasoning.
+- **Manual Review**: We manually reviewed every response where the LLM evaluator marked a result as FAIL to double check for errors. We corrected any evaluations as "PASS" when the answer is correct, but the format might be different as long as the format was not explicitly mentioned in the prompt. For example, expected: "January 20th, 2024" vs. actual "01/20/2024" would be flipped from "FAIL" to "PASS". You can see a full list of the over-riden eval results in this file [TODO LINK FILE].
 
 ...
 
@@ -197,7 +198,7 @@ Our work has limitations and opens areas for future research.
 - **Smarter Prompts**: Our current system prompt is simple. We will explore more advanced prompting techniques to improve performance.
 - **Open-Source Models**: Our framework is open. The models we use are not. We want to test how Meka performs with open-source models.
 - **Better Memory**: We plan to build more advanced memory systems. This will help the agent remember information across multiple sessions on the same site.
-- **More Tools**: We will continue to expand Meka's toolset. More tools mean more capabilities.
+- **More Tools**: We will continue to expand Meka's toolset based on the use cases by the community. For example, data extraction could be done via the clipboard instead of visually through the screenshot.
 
 ## 7. Conclusion
 
