@@ -14,7 +14,7 @@ This paper details our work. We will cover:
 - **Evaluation**: Our methodology for benchmarking on WebArena.
 - **Impact**: Meka's performance and its place in the current agent landscape.
 
-## 2. Meka's Architecturev
+## 2. Meka's Architecture
 
 Meka’s design is modular and powerful. An LLM acts as the agent's brain. It directs a set of tools to interact with a web browser.
 
@@ -160,7 +160,7 @@ To validate Meka's performance, we tested it on the WebArena benchmark. We plan 
 
 ### 4.1. Benchmark Setup and Modifications
 
-To ensure the accuracy of our results, we made several modifications to the WebArena test suite. These changes addressed issues in the benchmark's original configuration.
+To ensure the accuracy of our results, we made several modifications to the WebArena test suite. These changes addressed issues in the benchmark's original configuration. We did not modify any of the prompts from the original test.
 
 - **Typos:** We corrected a typo in the `gitlab_get_project_member_role` function.
 - **URL Mismatches:** We updated the start URL for the `shopping_admin` tasks in [webarena.json](./src/lib/webarena.json) to start from `http://3.149.163.222:7780/admin` instead of `http://3.149.163.222:7780`.
@@ -179,7 +179,7 @@ We use a hybrid evaluation system. A task is a "PASS" only if it passes all chec
 
 - **program_html**: This follows a port of what [webArena has](https://github.com/web-arena-x/webarena/blob/main/evaluation_harness/evaluators.py#L356) ported from python to typescript.
 - **LLM Check**: For others, we use an LLM to judge the result. It gets the task, the agent's answer, and the expected outcome. It returns a "PASS" or "FAIL" along with its reasoning.
-- **Manual Review**: We manually reviewed every response where the LLM evaluator marked a result as FAIL to double check for errors. We corrected any evaluations as "PASS" when the answer is correct, but the format might be different as long as the format was not explicitly mentioned in the prompt. For example, expected: "January 20th, 2024" vs. actual "01/20/2024" would be flipped from "FAIL" to "PASS". You can see a full list of the over-riden eval results in this file [TODO LINK FILE].
+- **Manual Review**: We manually reviewed every response where the LLM evaluator marked a result as FAIL to double check for errors. We corrected [ ] false "FAIL" where the answer matched the expected answer, but did not follow the strict format. For example, expected: "January 20th, 2024" vs. actual "01/20/2024" would be flipped from "FAIL" to "PASS" or two URLs leading to the same destination with different syntax. You can see a full list of the over-ridden eval results in this file [TODO LINK FILE].
 
 ...
 
