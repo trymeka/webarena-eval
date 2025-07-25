@@ -1,8 +1,8 @@
-# Mixture of Models: An Open-Source Blueprint for Autonomous Agents
+# Mixture of Models: SOTA Performance on webarena
 
 ## Abstract
 
-Autonomous agents can automate repetitive digital tasks. This paper introduces Meka, an open-source framework for building and benchmarking such agents. Meka's architecture uses a multi-provider LLM strategy, a flexible tool system, and mechanisms for in-context learning and self-correction. On the WebArena benchmark, Meka achieves state-of-the-art (SOTA) performance. This result supports the effectiveness of a multi-model strategy, where different LLMs are selected for different sub-tasks.
+Autonomous agents can automate repetitive digital tasks. This paper introduces Meka, an open-source framework for building and benchmarking such agents. Meka's architecture uses a multi-provider LLM strategy, a flexible tool system, and mechanisms for in-context learning and self-correction. On the WebArena benchmark, Meka achieves state-of-the-art (SOTA) performance beating out OpenAI Agent. This result supports the effectiveness of a multi-model strategy, where different LLMs are selected for different sub-tasks.
 
 ## 1. Introduction
 
