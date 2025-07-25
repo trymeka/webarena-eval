@@ -166,6 +166,10 @@ To ensure the accuracy of our results, we made several modifications to the WebA
 - **URL Mismatches:** We updated the start URL for the `shopping_admin` tasks in [webarena.json](./src/lib/webarena.json) to start from `http://3.149.163.222:7780/admin` instead of `http://3.149.163.222:7780`.
 - **Data Correction:** We fixed incorrect numbers and values in certain tests to align with the data on the test websites. (e.g. task id 66, 293-297).
 - **Exclusions:** We excluded all map-related tests. The map tiling URL in the provided Docker container was broken, making these tasks impossible to complete. Further, we excluded tasks where the expected_answer were incorrect or the tasks were impossible to complete because of the environment. You can find the list of exclusions here[TODO data file].
+- **Errors:** For task that failed due to provider errors, they were re-ran as is until we got either a `PASS` or a `FAIL`. Errors were of one of three types:
+  - `browserType.connectOverCDP: Timeout 30000ms exceeded.`
+  - `Invalid prompt: your prompt was flagged as potentially violating our usage policy.`
+  - `Overload` (API rate limits)
 
 These resulted in a total of 684 total tasks. The full list of task along with all of its corrections can be found in [webarena.json](./src/lib/webarena.json)
 
