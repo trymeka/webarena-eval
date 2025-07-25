@@ -11,7 +11,7 @@ export async function getResults(): Promise<Result[]> {
     return results;
   }
 
-  const stream = createReadStream(`${process.cwd()}/src/app/result.json`, {
+  const stream = createReadStream(`${process.cwd()}/src/lib/result.json`, {
     encoding: "utf-8",
   });
   const chunks: Buffer[] = [];
