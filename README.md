@@ -179,7 +179,7 @@ We use a hybrid evaluation system. A task is a "PASS" only if it passes all chec
 
 - **program_html**: This follows a port of what [webArena has](https://github.com/web-arena-x/webarena/blob/main/evaluation_harness/evaluators.py#L356) ported from python to typescript.
 - **LLM Check**: For others, we use an LLM to judge the result. It gets the task, the agent's answer, and the expected outcome. It returns a "PASS" or "FAIL" along with its reasoning.
-- **Manual Review**: We manually reviewed every response where the LLM evaluator marked a result as FAIL to double check for errors. We corrected [ ] false "FAIL" where the answer matched the expected answer, but did not follow the strict format. For example, expected: "January 20th, 2024" vs. actual "01/20/2024" would be flipped from "FAIL" to "PASS" or two URLs leading to the same destination with different syntax. You can see a full list of the over-ridden eval results in this file [TODO LINK FILE].
+- **Manual Review**: We manually reviewed every response where the LLM evaluator marked a result as FAIL to double check for errors. We corrected [ ] false "FAIL" where the answer matched the expected answer, but did not follow the strict format. For example, expected: "January 20th, 2024" vs. actual "01/20/2024" would be flipped from "FAIL" to "PASS". In addition, because we did not modify the prompts for tests, URL matching almost always failed as the agent does not naturally return URLs, but text. Therefore, we manually reveiwed the last page of the agent's navigation URL and matched it against the expected answer in the eval results. You can see a full list of the over-ridden eval results in this file [TODO LINK FILE].
 
 ...
 
